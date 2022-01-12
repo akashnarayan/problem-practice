@@ -5,7 +5,7 @@ import com.linkedlist.impl.Node;
  * Testing types of primitives, objects, collections and their behavior.
  * p.s. collections are also object reference at heap
  **/
-public class HeapAndStack {
+public class TestingVariablesAtHeapAndStackMemory {
 
 	public static void main(String[] args) throws InterruptedException {
 		final String test="final";
