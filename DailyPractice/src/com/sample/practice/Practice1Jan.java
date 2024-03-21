@@ -1,6 +1,10 @@
 package com.sample.practice;
 
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
+import java.util.Set;
+import java.util.TreeSet;
 
 
 /**
@@ -15,11 +19,16 @@ import java.util.Arrays;
  * </br>
  * 4. Replace the two numbers with 0 and 10 in the array
  * 
+ * 5. Find all the substrings of a string.
  **/
 public class Practice1Jan {
 
 	public static void main(String[] args) {
-		System.out.println(Arrays.toString(problem2()));
+		//System.out.println(Arrays.toString(problem2()));
+		
+		//System.out.println(combination(13,12));
+		findSubstring();
+		
 	}
 	
 	private static int[] problem2() {
@@ -68,14 +77,14 @@ public class Practice1Jan {
 		//System.out.println("The Highest product is :" + max * secondMax);
 		
 		// Second approach
-		int combination = combination(tc2.length, 2);
+		//int combination = combination(tc2.length, 2);
 		
-		int[] productArr = new int[combination];
-		calculateProduct(tc2, productArr);
-		keepHighestNumberinLastIndex(productArr);
-		int max = productArr[productArr.length-1];
-		
-		System.out.println("The Highest product is :" + max);//Arrays.toString(calculateProduct(tc2, productArr));
+//		int[] productArr = new int[combination];
+//		calculateProduct(tc2, productArr);
+//		keepHighestNumberinLastIndex(productArr);
+//		int max = productArr[productArr.length-1];
+//		
+//		System.out.println("The Highest product is :" + max);//Arrays.toString(calculateProduct(tc2, productArr));
 		
 		
 
@@ -92,13 +101,24 @@ public class Practice1Jan {
 		return newArr;
 	}
 	
-	private static final int combination(int n, int r) {
-		int numerator = factorial(n);
-		int denominator = factorial(n-r) * factorial(r);
-		return numerator/denominator;
+	private static final long combination(long n, long r) {
+		if(n<r) {
+			return 0;
+		}
+		long numerator = factorial(n);
+		long denominator = factorial(n-r) * factorial(r);
+		
+		if(denominator>0) {
+			return numerator/denominator;
+		}else {
+			return 1;
+		}
+		
+		
+		
 	};
 	
-	private static int factorial(int n) {
+	private static long factorial(long n) {
 		if(n>1) {
 			return n * factorial(n-1);
 		}else {
@@ -117,6 +137,25 @@ public class Practice1Jan {
 		}
 		
 		return arr;
+	}
+	
+	public static Set<String> findSubstring(){
+		
+		String tc = "abc";
+		String[] arr = tc.split("");
+		
+		Set<String> set = new TreeSet<>();
+		set.add(tc);
+		
+		Arrays.stream(arr).forEach(s->set.add(s));
+		
+		for(int i=0; i<tc.length(); i++) {
+			set.add(tc.replaceAll(String.valueOf(tc.charAt(i)), "")); 
+		}
+		
+		System.out.println(set);
+		
+		return set;
 	}
 	
 }
